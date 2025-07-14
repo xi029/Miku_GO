@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miku Go - 初音伴旅</title>
+    <link href="css/common.css" rel="stylesheet" />
+    <link href="iconfont/iconfont.css" rel="stylesheet" />
+    <link href="css/navbar.css" rel="stylesheet" />
+    <link href="css/home.css" rel="stylesheet" />
+    <link href="css/about.css" rel="stylesheet" />
+    <link href="css/footer.css" rel="stylesheet" />
+    <link href="css/generate.css" rel="stylesheet" />
+    <script src="js/chart.umd.min.js"></script>
+    <!-- <script src="js/marked.min.js"></script> -->
+    <script src="iconfont/iconfont.js"></script>
+    <link href="css/miku.css" rel="stylesheet" />
+  </head>
+  <body class="custom-bg">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-flex">
+          <div class="navbar-brand">
+            <h1 class="brand-title">
+              <i class="iconfont icon-feiji"></i>
+              Miku Go!
+            </h1>
+          </div>
+          <!-- 桌面端导航链接 -->
+          <div class="nav-links-desktop">
+            <a href="#home" class="nav-link">首页</a>
+            <a href="https://open.bigmodel.cn/" class="nav-link">关于</a>
+            <a href="#contact" class="nav-link">联系</a>
+          </div>
+
+          <!-- 缩小时菜单按钮 -->
+          <div class="nav-mobile-btn">
+            <button id="mobile-menu-button" class="nav-mobile-icon">
+              <i class="iconfont icon-caidan"></i>
+            </button>
+          </div>
+          <!-- 缩小时菜单 -->
+          <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-links">
+              <a href="#home" class="nav-link">首页</a>
+              <a href="https://open.bigmodel.cn/" class="nav-link">关于</a>
+              <a href="#contact" class="nav-link">联系</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- 展示主页区域 -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <div class="text-center">
+          <h1 class="hero-title">初音伴旅</h1>
+          <p class="hero-desc">
+            让AI为您规划完美的旅行体验，从目的地选择到详细行程安排，一切尽在掌握
+          </p>
+          <button id="start-planning-btn" class="btn-primary">
+            <svg class="icon" aria-hidden="true" style="font-size: 35px">
+              <use xlink:href="#icon-xiangsufeng_huojian"></use>
+            </svg>
+            <!-- <i class="iconfont icon-huojian"></i> -->
+            开始规划
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 用户输入区域 -->
+    <section id="input-section" class="input-section">
+      <div class="input-container">
+        <!-- title区域 -->
+        <div class="text-center mb-12">
+          <h2 class="section-title">规划您的完美旅行</h2>
+          <p class="section-desc">填写以下信息，AI将为您生成个性化旅行计划</p>
+        </div>
+        <!-- 表单区域 -->
+        <form id="travel-form" class="form-main">
+          <!-- 基础表单 -->
+          <div class="form-grid">
+            <div>
+              <label for="destination" class="form-label">
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-mudedichanpin"></use>
+                </svg>
+                旅行目的地
+              </label>
+              <input
+                type="text"
+                id="destination"
+                name="destination"
+                required
+                class="form-input"
+                placeholder="例如：东京、巴黎、纽约..."
+              />
+            </div>
+            <div>
+              <label for="start-date" class="form-label">
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-rili"></use>
+                </svg>
+                出发日期
+              </label>
+              <input
+                type="date"
+                id="start-date"
+                name="start-date"
+                required
+                class="form-input"
+              />
+            </div>
+            <div>
+              <label for="duration" class="form-label">
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-naozhong"></use>
+                </svg>
+                旅行天数
+              </label>
+              <input
+                type="number"
+                id="duration"
+                name="duration"
+                min="1"
+                max="30"
+                required
+                class="form-input"
+                placeholder="1-30天"
+              />
+            </div>
+            <div>
+              <label for="budget" class="form-label">
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-qiandai"></use>
+                </svg>
+                预算范围 (¥)
+              </label>
+              <div class="relative">
+                <input
+                  type="range"
+                  id="budget"
+                  name="budget"
+                  min="1000"
+                  max="50000"
+                  step="1000"
+                  value="10000"
+                  class="form-range"
+                />
+                <div class="range-labels">
+                  <span>¥1,000</span>
+                  <span id="budget-value">¥10,000</span>
+                  <span>¥50,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 用户偏好 -->
+          <div class="mb-6">
+            <label class="form-label">
+              <svg class="icon" aria-hidden="true" style="height: 2rem">
+                <use xlink:href="#icon-aixin"></use>
+              </svg>
+              旅行偏好 (可多选)
+            </label>
+            <div class="preferences-grid">
+              <label class="preference-item">
+                <input
+                  type="checkbox"
+                  name="preferences"
+                  value="food"
+                  class="mr-2"
+                />
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-icon-meishiweizhi"></use>
+                </svg>
+                美食
+              </label>
+              <label class="preference-item">
+                <input
+                  type="checkbox"
+                  name="preferences"
+                  value="culture"
+                  class="mr-2"
+                />
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-shu"></use>
+                </svg>
+                文化
+              </label>
+              <label class="preference-item">
+                <input
+                  type="checkbox"
+                  name="preferences"
+                  value="nature"
+                  class="mr-2"
+                />
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-a-shufengjingdaziran"></use>
+                </svg>
+                自然
+              </label>
+              <label class="preference-item">
+                <input
+                  type="checkbox"
+                  name="preferences"
+                  value="shopping"
+                  class="mr-2"
+                />
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-gouwu2"></use>
+                </svg>
+                购物
+              </label>
+              <label class="preference-item">
+                <input
+                  type="checkbox"
+                  name="preferences"
+                  value="adventure"
+                  class="mr-2"
+                />
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-huwaitanxian"></use>
+                </svg>
+                冒险
+              </label>
+              <label class="preference-item">
+                <input
+                  type="checkbox"
+                  name="preferences"
+                  value="relaxation"
+                  class="mr-2"
+                />
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use
+                    xlink:href="#icon-shatanyezishulvyoufengjingmianxing"
+                  ></use>
+                </svg>
+                放松
+              </label>
+              <label class="preference-item">
+                <input
+                  type="checkbox"
+                  name="preferences"
+                  value="history"
+                  class="mr-2"
+                />
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-lishiwenhua"></use>
+                </svg>
+                历史
+              </label>
+              <label class="preference-item">
+                <input
+                  type="checkbox"
+                  name="preferences"
+                  value="nightlife"
+                  class="mr-2"
+                />
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-cocktail"></use>
+                </svg>
+                夜生活
+              </label>
+            </div>
+          </div>
+          <!-- 进行生成 -->
+          <div class="text-center">
+            <button type="submit" id="generate-plan-btn" class="btn-primary">
+              <svg class="icon" aria-hidden="true" style="height: 2rem">
+                <use xlink:href="#icon-shengdan-xingxing"></use>
+              </svg>
+              生成旅行计划
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- 加载动画 -->
+    <div id="loading" class="loading-overlay">
+      <div class="loading-box">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">AI正在为您生成完美的旅行计划...</p>
+      </div>
+    </div>
+    <!-- 旅行计划展示区域 -->
+    <section id="plan-section" class="plan-section">
+      <div class="plan-container">
+        <div class="text-center mb-12">
+          <h2 class="section-title">您的专属旅行计划</h2>
+          <p class="section-desc">基于您的偏好，AI为您精心规划了以下行程</p>
+        </div>
+        <!-- 概览卡片 -->
+        <div class="plan-cards">
+          <div class="plan-card">
+            <span class="icon-map">🗺️</span>
+            <h3 class="plan-card-title">目的地</h3>
+            <p id="plan-destination" class="plan-card-desc">-</p>
+          </div>
+          <div class="plan-card">
+            <span class="icon-calendar-alt">📆</span>
+            <h3 class="plan-card-title">行程天数</h3>
+            <p id="plan-duration" class="plan-card-desc">-</p>
+          </div>
+          <div class="plan-card">
+            <span class="icon-coins">🪙</span>
+            <h3 class="plan-card-title">预算</h3>
+            <p id="plan-budget" class="plan-card-desc">-</p>
+          </div>
+        </div>
+        <!-- 每日行程 -->
+        <div id="daily-itinerary" class="mb-12">
+          <h3 class="section-subtitle">每日行程安排</h3>
+          <div id="itinerary-container" class="itinerary-list">
+            <!-- 动态生成的行程卡片 -->
+          </div>
+        </div>
+        <!-- 推荐景点 -->
+        <div id="attractions-section" class="mb-12">
+          <h3 class="section-subtitle">推荐景点</h3>
+          <div id="attractions-container" class="attractions-list">
+            <!-- 动态生成的景点卡片 -->
+          </div>
+        </div>
+        <!-- 餐厅推荐 -->
+        <div id="restaurants-section" class="mb-12">
+          <h3 class="section-subtitle">餐厅推荐</h3>
+          <div id="restaurants-container" class="restaurants-list">
+            <!-- 动态生成的餐厅卡片 -->
+          </div>
+        </div>
+        <!-- 预算分配图表 -->
+        <div id="budget-chart-section">
+          <h3 class="section-subtitle">预算分配</h3>
+          <div class="budget-chart-box">
+            <canvas id="budget-chart" width="400" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <div class="text-center mb-12">
+          <h2 class="section-title">关于我们</h2>
+          <p class="section-desc about-desc">
+            Miku Go 是您的智能旅行规划伙伴。我们利用先进的AI技术，
+            为您提供个性化的旅行建议和详细的行程安排，让每一次旅行都成为难忘的体验。
+          </p>
+        </div>
+        <div class="about-features">
+          <div class="about-feature">
+            <svg class="icon" aria-hidden="true" style="height: 2rem">
+              <use xlink:href="#icon-rengongzhineng1"></use>
+            </svg>
+            <h3 class="about-feature-title">AI智能规划</h3>
+            <p class="about-feature-desc">
+              基于您的偏好和需求，AI为您量身定制完美行程
+            </p>
+          </div>
+          <div class="about-feature">
+            <svg class="icon" aria-hidden="true" style="height: 2rem">
+              <use xlink:href="#icon-shizhong"></use>
+            </svg>
+            <h3 class="about-feature-title">实时更新</h3>
+            <p class="about-feature-desc">
+              获取最新的景点信息、餐厅推荐和交通建议
+            </p>
+          </div>
+          <div class="about-feature">
+            <svg class="icon" aria-hidden="true" style="height: 2rem">
+              <use xlink:href="#icon-shouji1"></use>
+            </svg>
+            <h3 class="about-feature-title">移动友好</h3>
+            <p class="about-feature-desc">
+              响应式设计，随时随地查看您的旅行计划
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 页脚 -->
+    <footer id="contact" class="footer">
+      <!-- 页脚主体区 -->
+      <div class="footer-container">
+        <div class="footer-grid">
+          <!-- 品牌 -->
+          <div class="footer-brand">
+            <h3 class="footer-title">
+              <i class="iconfont icon-feiji"></i>
+              Miku Go!
+            </h3>
+            <p class="footer-desc">
+              让AI为您规划完美的旅行体验，从目的地选择到详细行程安排，一切尽在掌握。
+            </p>
+          </div>
+          <!-- 联系我们 -->
+          <div class="footer-contact">
+            <h4 class="footer-contact-title">联系我们</h4>
+            <div class="footer-contact-list">
+              <p>
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-youxiang"></use>
+                </svg>
+                fengyuan711@gmail.com
+              </p>
+              <p>
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-dianhua"></use>
+                </svg>
+                +86 17838590157
+              </p>
+              <p>
+                <svg class="icon" aria-hidden="true" style="height: 2rem">
+                  <use xlink:href="#icon-mudedichanpin"></use>
+                </svg>
+                天津市滨海新区
+              </p>
+            </div>
+          </div>
+          <!-- 快速链接 -->
+          <div class="footer-links">
+            <h4 class="footer-links-title">快速链接</h4>
+            <div class="footer-links-list">
+              <a href="#home" class="footer-link">首页</a>
+              <a href="#about" class="footer-link">关于我们</a>
+              <a href="#" class="footer-link">隐私政策</a>
+              <a href="#" class="footer-link">服务条款</a>
+            </div>
+          </div>
+        </div>
+        <!-- copyright区域 -->
+        <div class="footer-copyright">
+          <p>&copy; 2025 Miku Go!. 保留所有权利。</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Draggable Assistant -->
+    <div id="draggable-assistant">
+      <img src="images/weilai.gif" alt="AI Assistant" id="ai-img" />
+    </div>
+
+    <!-- Dialog Box -->
+    <div id="assistant-dialog">
+      <div class="dialog-content">
+        <div class="chat-header">
+          AI Miku Assistant
+          <span id="close-dialog-btn">&times;</span>
+        </div>
+        <div id="chat-window" class="chat-window">
+          <!-- AI欢迎消息 -->
+          <div class="chat-message ai-message">
+            <p>你好！我是你的专属旅行助手，有什么可以帮你的吗？</p>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="输入您的问题..." />
+          <button id="send-chat-btn">发送</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

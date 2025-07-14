@@ -1,0 +1,45 @@
+/* 主页展示区 */
+.hero-section {
+  padding-top: 80px;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f0f9ff 100%);
+  display: flex;
+  align-items: center;
+}
+.hero-container {
+  width: 100%;
+}
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+.hero-desc {
+  font-size: 1.25rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  font-weight: bold;
+  padding: 1rem 2.5rem;
+  border-radius: 999px;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+/* 鼠标放上去时颜色加深，大小变为1.05倍 */
+.btn-primary:hover {
+  background: #f5589a;
+  transform: scale(1.05);
+}

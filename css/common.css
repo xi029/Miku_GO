@@ -1,0 +1,69 @@
+/* 基础重置 */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+form,
+input,
+button,
+label,
+section,
+nav,
+footer,
+div {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body.custom-bg {
+  background: #f9fafb;
+  font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    Arial, sans-serif;
+  color: #222;
+}
+
+/* 容器和布局 */
+.container,
+.input-container,
+.plan-container,
+.about-container,
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+.mb-12 {
+  margin-bottom: 3rem;
+}
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* 禁止页面滚动 */
+.no-scroll {
+  overflow: hidden;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  size: 2em;
+}

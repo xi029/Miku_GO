@@ -1,0 +1,403 @@
+/* Draggable Assistant 
+这段样式用于设置可拖动的助手图标样式 */
+#draggable-assistant {
+  /* 固定定位，将图标固定在页面右下角 */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  /* 设置图标的宽度和高度 */
+  width: 300px;
+  height: 300px;
+  /* 鼠标悬停时显示为抓取手势 */
+  cursor: grab;
+  /* 设置图标的层级，确保它显示在其他元素之上 */
+  z-index: 999;
+  /* 将图标设置为圆形 */
+  border-radius: 50%;
+  /* 关键修复：禁止用户选中文本，防止双击变蓝 */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  /* 添加过渡效果，使鼠标悬停时的缩放动画更平滑 */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* 鼠标悬停在助手图标上时，将图标放大1.05倍 */
+#draggable-assistant:hover {
+  transform: scale(1.05);
+}
+
+/* 设置助手图标内部的图片样式 */
+#draggable-assistant img {
+  /* 让图片宽度和高度填满父元素 */
+  width: 100%;
+  height: 100%;
+  /* 确保图片保持圆形 */
+  border-radius: 50%;
+  /* 使图片覆盖整个容器，避免变形 */
+  object-fit: cover;
+  /* 禁止图片响应鼠标事件，防止影响拖动效果 */
+  pointer-events: none;
+}
+
+/* Dialog Box 
+这段样式用于设置聊天对话框的样式 */
+#assistant-dialog {
+  /* 固定定位，将对话框居中显示 */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  /* 初始时对话框缩小为0.9倍 */
+  transform: scale(0.9);
+  /* 设置对话框背景为透明 */
+  background: transparent !important;
+  /* 去除对话框的阴影 */
+  box-shadow: none;
+  /* 设置对话框的层级，确保它显示在其他元素之上 */
+  z-index: 1000;
+  /* 对话框宽度为父元素的90%，最大宽度为420px */
+  width: 90%;
+  max-width: 420px;
+  min-width: 280px;
+  min-height: 320px;
+  /* 初始时对话框隐藏且透明度为0 */
+  opacity: 0;
+  visibility: hidden;
+  /* 添加过渡效果，使对话框显示和隐藏时更平滑 */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  /* 使用flex布局 */
+  display: flex;
+  /* 关闭原生resize，改为自定义 */
+  resize: none;
+  overflow: visible;
+  /* 设置对话框的圆角 */
+  border-radius: 24px;
+}
+
+/* 当对话框处于激活状态时，显示对话框并恢复正常大小 */
+#assistant-dialog.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* 设置对话框内容区域的样式 */
+.dialog-content {
+  /* 相对定位，为子元素提供定位参考 */
+  position: relative;
+  /* 内容区域宽度填满父元素 */
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  min-width: 200px;
+  /* 使用flex布局，子元素垂直排列 */
+  display: flex;
+  flex-direction: column;
+  /* 内容区域高度为视口高度的70%，最大高度为600px */
+  height: 70vh;
+  max-height: 600px;
+  /* 设置内容区域的背景渐变 */
+  background: transparent;
+  /* 设置内容区域的圆角 */
+  border-radius: 24px;
+  /* 添加阴影效果 */
+  /* box-shadow: 0 2px 24px rgba(59, 130, 246, 0.1); */
+  box-shadow: none;
+}
+
+/* 设置聊天窗口头部的样式 */
+.chat-header {
+  /* 设置内边距 */
+  padding: 1rem 1.5rem;
+  /* 设置字体粗细 */
+  font-weight: 600;
+  /* 设置字体大小 */
+  font-size: 1.1rem;
+  /* 设置字体颜色 */
+  color: #333;
+  /* 添加底部边框 */
+  /* border-bottom: 1px solid #e5e7eb; */
+  border-bottom: none; /* 底部边框透明 */
+  /* 相对定位，为关闭按钮提供定位参考 */
+  position: relative;
+  /* 文本居中显示 */
+  text-align: center;
+}
+
+/* 设置关闭对话框按钮的样式 */
+#close-dialog-btn {
+  /* 绝对定位，将按钮放置在头部右侧中间位置 */
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  /* 设置字体大小 */
+  font-size: 1.8rem;
+  /* 设置字体粗细 */
+  font-weight: normal;
+  /* 设置字体颜色 */
+  color: #9ca3af;
+  /* 鼠标悬停时显示为指针手势 */
+  cursor: pointer;
+  /* 添加过渡效果，使鼠标悬停时颜色变化更平滑 */
+  transition: color 0.2s;
+}
+
+/* 鼠标悬停在关闭按钮上时，改变按钮颜色 */
+#close-dialog-btn:hover {
+  color: #374151;
+}
+
+/* 设置聊天窗口的样式 */
+.chat-window {
+  /* 让聊天窗口自动填充剩余空间 */
+  flex-grow: 1;
+  min-height: 80px;
+  min-width: 80px;
+  width: 100%;
+  /* 设置内边距 */
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  /* 当内容超出窗口时显示垂直滚动条 */
+  overflow-y: auto;
+  /* 设置窗口背景颜色 */
+  background: transparent;
+  /* 设置窗口圆角 */
+  border-radius: 18px;
+  /* 添加阴影效果 */
+  /* box-shadow: 0 2px 12px rgba(59, 130, 246, 0.06); */
+  box-shadow: none; /* 去除阴影 */
+  border: none; /* 边框透明 */
+  /* 设置窗口的上下外边距 */
+  margin: 1rem 0;
+}
+
+/* 设置聊天消息的通用样式 */
+.chat-message {
+  /* 使用flex布局，消息内容垂直底部对齐 */
+  display: flex;
+  align-items: flex-end;
+  /* 设置消息之间的底部外边距 */
+  margin-bottom: 1.5rem;
+}
+
+/* 设置AI发送的消息样式 */
+.chat-message.ai-message {
+  /* 消息从左到右排列 */
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/* 设置用户发送的消息样式 */
+.chat-message.user-message {
+  /* 消息从右到左排列 */
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* 设置头像的样式 */
+.avatar {
+  /* 设置头像的宽度和高度 */
+  width: 40px;
+  height: 40px;
+  /* 将头像设置为圆形 */
+  border-radius: 50%;
+  /* 添加阴影效果 */
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+  /* 设置头像的左右外边距 */
+  margin: 0 10px;
+  /* 设置头像背景颜色 */
+  background: #fff;
+  /* 使图片覆盖整个容器，避免变形 */
+  object-fit: cover;
+  /* 添加边框 */
+  border: 2px solid #e0e7ff;
+}
+
+/* 确保用户消息的头像在最右侧 */
+.chat-message.user-message .avatar {
+  order: -1; /* 让头像排在最前面，也就是最右侧 */
+}
+/* 设置聊天消息文本的通用样式 */
+.chat-message p {
+  /* 设置文本内边距 */
+  padding: 0.85rem 1.2rem;
+  /* 设置文本圆角 */
+  border-radius: 18px;
+  /* 设置行高 */
+  line-height: 1.7;
+  /* 消息文本最大宽度为70% */
+  max-width: 70%;
+  /* 设置字体大小 */
+  font-size: 1.08rem;
+  /* 添加阴影效果 */
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
+  /* 去除段落的默认外边距 */
+  margin: 0;
+}
+
+/* 设置AI消息文本的样式 */
+.ai-message p {
+  /* 设置AI消息文本的背景渐变 */
+  background: linear-gradient(135deg, #e0e7ff 60%, #f0f9ff 100%);
+  /* 设置AI消息文本的颜色 */
+  color: #1f2937;
+  /* 调整AI消息文本左下角的圆角 */
+  border-bottom-left-radius: 6px;
+}
+
+/* 设置用户消息文本的样式 */
+.user-message p {
+  /* 设置用户消息文本的背景渐变 */
+  background: linear-gradient(135deg, #f5589a 60%, #a0e9ff 100%);
+  /* 设置用户消息文本的颜色 */
+  color: #fff;
+  /* 调整用户消息文本右下角的圆角 */
+  border-bottom-right-radius: 6px;
+}
+
+/* 设置思考状态的文本样式 */
+.thinking {
+  color: #f5589a;
+}
+
+/* 设置聊天输入区域的样式 */
+.chat-input-area {
+  /* 使用flex布局 */
+  display: flex;
+  /* 设置内边距 */
+  padding: 1rem 0.5rem;
+  /* 添加顶部边框 */
+  /* border-top: 1px solid #e5e7eb; */
+  border-top: none; /* 顶部边框透明 */
+  /* 设置输入区域背景颜色 */
+  background: transparent;
+  /* 设置输入区域底部圆角 */
+  border-radius: 0 0 16px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 设置聊天输入框的样式 */
+#chat-input {
+  /* 让输入框自动填充剩余空间 */
+  flex-grow: 1;
+  /* 添加边框 */
+  border: 1.5px solid #d1d5db;
+  /* 设置输入框圆角 */
+  border-radius: 16px;
+  /* 设置输入框内边距 */
+  padding: 0.85rem 1rem;
+  /* 设置输入框字体大小 */
+  font-size: 1.08rem;
+  /* 设置输入框右边外边距 */
+  margin-right: 0.5rem;
+  /* 设置输入框背景颜色 */
+  background: #fff;
+  /* 添加过渡效果，使输入框获得焦点时边框和阴影变化更平滑 */
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+/* 输入框获得焦点时的样式 */
+#chat-input:focus {
+  /* 去除输入框的默认轮廓 */
+  outline: none;
+  /* 改变输入框边框颜色 */
+  border-color: #f5589a;
+  /* 添加阴影效果 */
+  box-shadow: 0 0 0 2px #f5589a33;
+}
+
+/* 设置发送聊天消息按钮的样式 */
+#send-chat-btn {
+  /* 去除按钮边框 */
+  border: none;
+  /* 设置按钮背景渐变 */
+  background: linear-gradient(135deg, #f5589a 60%, #a0e9ff 100%);
+  /* 设置按钮字体颜色 */
+  color: white;
+  /* 设置按钮内边距 */
+  padding: 0.85rem 1.5rem;
+  /* 设置按钮圆角 */
+  border-radius: 16px;
+  /* 设置按钮字体大小 */
+  font-size: 1.08rem;
+  /* 设置按钮字体粗细 */
+  font-weight: 600;
+  /* 鼠标悬停时显示为指针手势 */
+  cursor: pointer;
+  /* 添加过渡效果，使鼠标悬停时背景变化更平滑 */
+  transition: background 0.2s;
+  /* 添加阴影效果 */
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+/* 鼠标悬停在发送按钮上时，改变按钮背景渐变 */
+#send-chat-btn:hover {
+  background: linear-gradient(135deg, #a0e9ff 100%, #f5589a 100%);
+}
+
+/* 自定义resize handle样式 */
+.resize-handle {
+  position: absolute;
+  z-index: 1100;
+  background: transparent;
+}
+/* 四边 */
+.resize-handle.handle-top {
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  cursor: n-resize;
+}
+.resize-handle.handle-bottom {
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  cursor: s-resize;
+}
+.resize-handle.handle-left {
+  left: -4px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: w-resize;
+}
+.resize-handle.handle-right {
+  right: -4px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: e-resize;
+}
+/* 四角 */
+.resize-handle.handle-topleft {
+  top: -4px;
+  left: -4px;
+  width: 12px;
+  height: 12px;
+  cursor: nw-resize;
+}
+.resize-handle.handle-topright {
+  top: -4px;
+  right: -4px;
+  width: 12px;
+  height: 12px;
+  cursor: ne-resize;
+}
+.resize-handle.handle-bottomleft {
+  bottom: -4px;
+  left: -4px;
+  width: 12px;
+  height: 12px;
+  cursor: sw-resize;
+}
+.resize-handle.handle-bottomright {
+  bottom: -4px;
+  right: -4px;
+  width: 12px;
+  height: 12px;
+  cursor: se-resize;
+}

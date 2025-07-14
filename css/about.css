@@ -1,0 +1,32 @@
+/* 关于我们 */
+.about-section {
+    background: #fff;
+    padding: 5rem 0;
+  }
+  .about-features {
+    display: grid;
+    /* 三列展示 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  /* 宽度小于900px，变成1列展示 */
+  @media (max-width: 900px) {
+    .about-features { grid-template-columns: 1fr; }
+  }
+  .about-feature {
+    text-align: center;
+  }
+  .about-feature-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #22223b;
+    margin-bottom: 0.5rem;
+  }
+  .about-feature-desc {
+    color: #6b7280;
+    font-size: 1rem;
+  }
+  .about-desc {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+  }

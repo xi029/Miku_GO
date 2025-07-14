@@ -1,0 +1,489 @@
+/* 表单区 */
+.input-section {
+  background: #fff;
+  padding: 5rem 0;
+}
+.form-main {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+}
+.form-grid {
+  display: grid;
+  /* 双列展示 */
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+/* 宽度小于768，单列展示 */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.form-label {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  /* 输入框样式改变动画 */
+  transition: border 0.2s, box-shadow 0.2s;
+}
+/* 输入框获取焦点后样式改变 */
+.form-input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+.form-range {
+  width: 100%;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  appearance: none;
+  outline: none;
+  margin-bottom: 0.5rem;
+}
+/* 选中滑块，更改样式 */
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #2563eb;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.15);
+}
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #2563eb;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.15);
+}
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+/* 偏好多选 */
+.preferences-grid {
+  display: grid;
+  /* 四列 */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+/* 宽度小于900,设置为2列 */
+@media (max-width: 900px) {
+  .preferences-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.preference-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 1rem;
+  cursor: pointer;
+  background: #fff;
+  transition: background 0.2s, border 0.2s;
+  font-size: 1rem;
+  gap: 1rem;
+}
+.preference-item:hover {
+  background: #eff6ff;
+  border-color: #2563eb;
+}
+
+/* 计划展示区 */
+.plan-section {
+  background: #f3f4f6;
+  padding: 5rem 0;
+  display: none;
+  .section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+}
+.plan-section.active {
+  display: block;
+}
+.plan-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+@media (max-width: 900px) {
+  .plan-cards {
+    grid-template-columns: 1fr;
+  }
+}
+.plan-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.plan-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+.plan-card-desc {
+  color: #6b7280;
+  font-size: 1rem;
+}
+.icon-map,
+.icon-calendar-alt,
+.icon-coins {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.section-desc {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+.section-subtitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #22223b;
+  margin-bottom: 1.5rem;
+}
+
+.itinerary-list,
+.attractions-list,
+.restaurants-list {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 900px) {
+  .attractions-list,
+  .restaurants-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .attractions-list,
+  .restaurants-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.budget-chart-box {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+}
+
+/* 加载动画 */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.loading-overlay.active {
+  display: flex;
+}
+.loading-box {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem 3rem;
+  text-align: center;
+}
+.loading-spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid #e5e7eb;
+  border-top: 8px solid #2563eb;
+  border-radius: 50%;
+  margin: 0 auto 1rem auto;
+  animation: spin 1s linear infinite;
+}
+/* loading动画 */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-text {
+  color: #374151;
+  font-size: 1.1rem;
+}
+
+.restaurants-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* 自定义每日行程样式 */
+.day-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.day-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.day-card-title-icon {
+  color: #3b82f6;
+  margin-right: 0.75rem;
+  font-size: 1.5rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 1rem;
+}
+
+/* 时间线左侧的竖线 */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background-color: #e5e7eb;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* 时间线上的圆点 */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  border: 2px solid #ffffff;
+  z-index: 1;
+  transform: translateX(-4px);
+}
+
+.timeline-item-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.timeline-time {
+  background-color: #eef2ff;
+  color: #4338ca;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-right: 1rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.timeline-details {
+  padding-top: 2px;
+}
+
+.timeline-activity {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-description {
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* 自定义餐厅卡片样式 */
+.restaurant-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.card-rating {
+  background-color: #fff7ed;
+  color: #fb923c;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.card-rating .iconfont {
+  font-size: 0.8rem;
+  margin-right: 0.25rem;
+}
+
+.card-description {
+  color: #4b5563;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-tag {
+  background-color: #f5f3ff;
+  color: #7c3aed;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+}
+
+.card-price {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.card-button {
+  width: 100%;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 1rem;
+}
+
+.card-button:hover {
+  background-color: #2563eb;
+}
+
+/* 自定义景点卡片样式 */
+.attraction-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.attraction-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.attraction-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.attraction-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.attraction-rating {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.attraction-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.attraction-card-price {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #3b82f6;
+}

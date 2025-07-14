@@ -1,0 +1,52 @@
+/* 页脚 */
+.footer {
+    background: #111827;
+    color: #fff;
+    padding: 3rem 0;
+  }
+  .footer-grid {
+    display: grid;
+    /* 三列展示 2:1:1 */
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+  }
+  @media (max-width: 900px) {
+    /* 宽度小于900，变为1列展示 */
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  .footer-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .footer-desc {
+    color: #d1d5db;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-contact-title, .footer-links-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .footer-contact-list p, .footer-links-list a {
+    color: #d1d5db;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .footer-link:hover { color: #fff; }
+  .footer-copyright {
+    border-top: 1px solid #22223b;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    text-align: center;
+    color: #d1d5db;
+    font-size: 0.95rem;
+  }
